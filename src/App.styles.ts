@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface TodoItemProps {
+  isChecked: boolean;
+}
 
 export const AppWrapper = styled.main`
   max-width: 1124px;
@@ -97,12 +101,46 @@ export const TodoContent = styled.div`
   margin-top: 40px;
 `;
 
+export const TodoInputItem = styled.div<TodoItemProps>`
+  display: flex;
+  align-items: center;
+
+  p {
+    ${(props) =>
+      props.isChecked &&
+      css`
+        text-decoration: line-through;
+      `}
+  }
+  &:hover {
+    color: #000000;
+  }
+
+  input {
+    margin-right: 15px;
+  }
+
+  span {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    opacity: 0.6;
+
+    ${(props) =>
+      props.isChecked &&
+      css`
+        text-decoration: line-through;
+      `}
+  }
+`;
+
 export const TodoItem = styled.div`
   display: flex;
   align-items: center;
+
   padding: 10px 20px;
   border-radius: 10px;
-  background-color: #f1f1f1;
+  border: 1px solid #bababa;
 
   & + div {
     margin-top: 30px;
@@ -111,29 +149,11 @@ export const TodoItem = styled.div`
   label {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     color: #333333;
     transition: all 0.2s ease;
-
-    span {
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 12px;
-    }
-
-    h2 {
-      font-size: 25px;
-    }
-
-    &:hover {
-      color: #000000;
-    }
-    input {
-      margin-right: 15px;
-    }
   }
-
-  min-height: 100px;
-  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 `;
 
 export const Counter = styled.div`
