@@ -37,8 +37,6 @@ export const Header = styled.div`
   padding-top: 50px;
 `;
 
-export const Content = styled.div``;
-
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,40 +56,7 @@ export const InputWrapper = styled.div`
     flex-direction: column;
   }
 
-  input {
-    background-color: transparent;
-    border: 1px solid #bababa;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-
-  select {
-    padding: 4px 10px;
-    margin-bottom: 10px;
-    background-color: transparent;
-    border-radius: 5px;
-    border: 1px solid #bababa;
-  }
-
   button {
-    background-color: #1b78cd;
-    border: none;
-
-    height: 40px;
-    color: white;
-    border-radius: 5px;
-    margin-top: 10px;
-
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-
-    transition: all 0.2s ease;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
   }
 `;
 
@@ -99,6 +64,36 @@ export const TodoContent = styled.div`
   width: 100%;
 
   margin-top: 40px;
+
+  .phrases {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .credits {
+    text-align: center;
+  }
+`;
+
+export const TodoItemCheck = styled.div<TodoItemProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-right: 30px;
+
+  span {
+    margin-top: 5px;
+    font-size: 9px;
+    color: red;
+    text-transform: uppercase;
+    ${(props) =>
+      props.isChecked &&
+      css`
+        color: green;
+      `}
+  }
 `;
 
 export const TodoInputItem = styled.div<TodoItemProps>`
@@ -116,28 +111,22 @@ export const TodoInputItem = styled.div<TodoItemProps>`
     color: #000000;
   }
 
-  input {
-    margin-right: 15px;
-  }
-
-  span {
+  h6 {
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    font-size: 12px;
     opacity: 0.6;
-
+    font-weight: normal;
+    font-size: 12px;
     ${(props) =>
       props.isChecked &&
       css`
         text-decoration: line-through;
-      `}
+      `};
   }
 `;
 
 export const TodoItem = styled.div`
-  display: flex;
-  align-items: center;
-
+  width: 1fr;
   padding: 10px 20px;
   border-radius: 10px;
   border: 1px solid #bababa;
@@ -146,20 +135,47 @@ export const TodoItem = styled.div`
     margin-top: 30px;
   }
 
-  label {
+  form {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    color: #333333;
-    transition: all 0.2s ease;
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: #333333;
+      transition: all 0.2s ease;
+    }
   }
 `;
 
 export const Counter = styled.div`
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
 
   span {
     color: #c1c1c1c1;
+  }
+`;
+
+export const TodoDate = styled.div`
+  display: flex;
+  align-items: center;
+  width: 25%;
+
+  button {
+    height: fit-content;
+    background-color: transparent;
+    color: #333333;
+  }
+
+  span {
+    margin-right: 20px;
+    color: #333333;
+    opacity: 0.5;
   }
 `;
