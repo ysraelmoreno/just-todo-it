@@ -1,5 +1,3 @@
-import { uuid } from "uuidv4";
-
 const phrases = [
   "Don't let your dreams be dreams",
 
