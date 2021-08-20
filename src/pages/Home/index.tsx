@@ -1,4 +1,4 @@
-import { useEffect, useState, MouseEvent } from "react";
+import { useEffect, useState, MouseEvent, useCallback } from "react";
 import { uuid } from "uuidv4";
 
 import { FiBox, FiTrash2 } from "react-icons/fi";
@@ -24,7 +24,6 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 import Button from "../../components/Button";
 import useShia from "../../hooks/useShia";
-import { useCallback } from "react";
 
 interface ITodo {
   id: string;
