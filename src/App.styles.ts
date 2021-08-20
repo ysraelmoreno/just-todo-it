@@ -62,17 +62,18 @@ export const InputWrapper = styled.div`
 
 export const TodoContent = styled.div`
   width: 100%;
-
+  display: flex;
   margin-top: 40px;
 
   .phrases {
     width: 100%;
     text-align: center;
-    margin-top: 50px;
   }
 
   .credits {
     text-align: center;
+    margin-top: 100px;
+
   }
 `;
 

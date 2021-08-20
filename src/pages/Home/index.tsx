@@ -20,17 +20,11 @@ import {
 
 import Logo from "../../assets/logo.svg";
 
-// @ts-ignore
-import audioDoIt from "../../assets/doit2.mp3";
-
-// @ts-ignore
-import yesterday from "../../assets/yesterday.mp3";
-// @ts-ignore
-import stopgivingup from "../../assets/stopgivingup.mp3";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 import Button from "../../components/Button";
 import useShia from "../../hooks/useShia";
+import { useCallback } from "react";
 
 interface ITodo {
   id: string;
@@ -50,19 +44,14 @@ function Home() {
 
   function handleDeleteTodo(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
+
     const findTodo = todo.findIndex(
       (item) => item.id === event.currentTarget.value
     );
 
-    let newTodo;
-    if (todo.length > 1) {
-      newTodo = todo.splice(findTodo, 1);
-    } else {
-      newTodo = todo.splice(findTodo, 0);
-    }
+    todo.splice(findTodo, 1);
 
-    setTodo(newTodo);
-    setDone(newTodo.length);
+    setTodo([...todo]);
   }
 
   function handleClick(event: any) {
@@ -151,6 +140,7 @@ function Home() {
             You has {done}/{todo.length} tasks done
           </span>
         </Counter>
+
         {todo.map((singleTodo) => {
           const filtered = options.find(
             (option) => option.value === singleTodo.category

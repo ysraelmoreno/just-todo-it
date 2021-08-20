@@ -1,5 +1,5 @@
 import { animated } from "react-spring";
-import styled, { keyframes, css } from "styled-components";
+import styled from "styled-components";
 
 export const ShiaContainer = styled(animated.div)`
   display: flex;
@@ -10,8 +10,10 @@ export const ShiaContainer = styled(animated.div)`
   bottom: 0;
   left: -50%;
 
+  width: 30%;
+
   img {
-    width: 10%;
+    width: 30%;
   }
 
   div {

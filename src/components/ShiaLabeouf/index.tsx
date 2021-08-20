@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import { useTransition, animated } from "react-spring";
-import shiaImage from "../../assets/shialabeouf.png";
+import { useTransition } from "react-spring";
 
 import useShia from "../../hooks/useShia";
 
 import { ShiaContainer } from "./styles";
 
 function ShiaLabeouf() {
-  const { showing, removeShia, displayPhrases } = useShia();
+  const { showing, removeShia, displayPhrases, image } = useShia();
 
   const transitions = useTransition(showing, {
     from: { left: "-120%" },
@@ -24,13 +23,13 @@ function ShiaLabeouf() {
     return () => {
       clearTimeout(timer);
     };
-  }, [showing]);
+  }, [showing, removeShia]);
 
   return transitions(
     (styles, item) =>
       item && (
         <ShiaContainer style={styles}>
-          <img src={shiaImage} alt="Shia Labeouf" />
+          <img src={image} alt="Shia Labeouf" />
           <div>
             <h2>{displayPhrases}</h2>
             <h5>JUST DO IT!</h5>

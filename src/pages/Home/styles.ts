@@ -73,6 +73,7 @@ export const TodoContent = styled.div`
 
   .credits {
     text-align: center;
+    margin-top: 100px;
   }
 `;
 
