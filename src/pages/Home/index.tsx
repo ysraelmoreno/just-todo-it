@@ -52,6 +52,7 @@ function Home() {
     todo.splice(findTodo, 1);
 
     setTodo([...todo]);
+    setDone(todo.length);
   }
 
   function handleClick(event: any) {
