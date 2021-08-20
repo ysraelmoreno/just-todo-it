@@ -42,52 +42,61 @@ function Home() {
 
   const { addShia } = useShia();
 
-  function handleDeleteTodo(event: MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
+  const handleDeleteTodo = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault();
 
-    const findTodo = todo.findIndex(
-      (item) => item.id === event.currentTarget.value
-    );
+      const findTodo = todo.findIndex(
+        (item) => item.id === event.currentTarget.value
+      );
 
-    todo.splice(findTodo, 1);
+      todo.splice(findTodo, 1);
 
-    setTodo([...todo]);
-    setDone(todo.length);
-  }
+      setTodo([...todo]);
+      setDone(todo.length);
+    },
+    [todo]
+  );
 
-  function handleClick(event: any) {
-    event.preventDefault();
+  const handleClick = useCallback(
+    (event: any) => {
+      event.preventDefault();
 
-    if (todoTitle === "") return;
+      if (todoTitle === "") return;
 
-    setTodo([
-      ...todo,
-      {
-        id: uuid(),
-        title: todoTitle,
-        category: todoCategory,
-        done: false,
-        createdAt: new Date(),
-      },
-    ]);
-  }
+      setTodo([
+        ...todo,
+        {
+          id: uuid(),
+          title: todoTitle,
+          category: todoCategory,
+          done: false,
+          createdAt: new Date(),
+        },
+      ]);
+    },
+    [todo, todoTitle, todoCategory]
+  );
 
-  function handleTodo(event: any) {
-    const findTodo = todo.find((index) => index.id === event.target.value);
-    const index = todo.findIndex((index) => index.id === event.target.value);
+  const handleTodo = useCallback(
+    (event: any) => {
+      const findTodo = todo.find((index) => index.id === event.target.value);
+      const index = todo.findIndex((index) => index.id === event.target.value);
 
-    if (findTodo) {
-      findTodo.done = !findTodo?.done;
-      todo.splice(index, 1, findTodo);
-    }
+      if (findTodo) {
+        findTodo.done = !findTodo?.done;
+        todo.splice(index, 1, findTodo);
+      }
 
-    const filterDone = todo.filter((item) => item.done === true);
+      const filterDone = todo.filter((item) => item.done === true);
 
-    if (filterDone.length === todo.length) addShia();
+      if (filterDone.length === todo.length) addShia();
 
-    setDone(filterDone.length);
-    setTodo(todo);
-  }
+      setDone(filterDone.length);
+      setTodo(todo);
+    },
+    [addShia, todo]
+  );
 
   useEffect(() => {
     const categoryDefault = options.find((option) => option.selected === true);
